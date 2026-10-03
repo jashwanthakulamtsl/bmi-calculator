@@ -1,0 +1,92 @@
+Create docker file
+
+
+
+ng build --prod
+Create build of the angular application in the project root folder
+
+
+
+docker build -t <image-name> .
+Command used to build the docker image
+
+
+
+docker images
+Check whether image has been created
+
+
+
+docker run -d -p 8080:80 --name <container-name> <image-name>
+Command to run the docker image as a container on localhost 8080 and port 80
+
+
+
+If any changes in the code:-
+docker stop <container-name>
+docker rm <container-name>
+docker build -t <image-name> .
+
+
+
+Create a .dockerignore file
+
+
+
+Push code to github
+
+
+
+Create GitHub Personal Access Token
+Grant read:packages, write:packages, delete:packages permissions while creating the Token
+
+
+
+Login to GHCR = GitHub Container Registry
+docker login ghcr.io -u <github-username>
+Paste the PAT Token
+
+
+
+Tag your existing docker image
+docker tag <local-image-name>:<TAG> ghcr.io/<OWNER>/<IMAGE_NAME>:<TAG>
+
+
+
+Push Image to GHCR
+docker push ghcr.io/<OWNER>/<IMAGE_NAME>:<TAG>
+
+
+
+Verify images exists
+https://github.com/<username>?tab=packages
+
+
+
+Make package public
+GitHub
+→ Packages
+→ bmi-calculator
+→ Package Settings
+→ Change visibility from private to public so that render can pull the image
+
+
+
+Create Render Account
+Sign-in with GitHub
+
+
+
+Deploy Docker Image
+New + Web Service
+Deploy an existing image
+ghcr.io/<username>/<image-name>:<TAG>
+
+
+
+Configure Service
+Name
+Instance: Free
+Choose nearest region
+Add environment variable"PORT" with value as port number which is exposed in the docker file
+Deploy
